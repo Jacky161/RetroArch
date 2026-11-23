@@ -139,6 +139,14 @@ jobs:
         cd samples/network/icloud_cloudkit
         make clean check SANITIZER=address,undefined
 
+    - name: Install retroarch-apple-deps
+      run: |
+        sudo git clone --depth 1 https://github.com/warmenhoven/retroarch-apple-deps.git /usr/local/share/retroarch-apple-deps
+
+    - name: Rebuild assets.zip
+      run: |
+        ./pkg/apple/rebuild-assets.sh -a -m
+
     - name: Compile RA
       run: |
         set -o pipefail
